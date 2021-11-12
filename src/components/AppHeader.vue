@@ -1,5 +1,12 @@
 <template>
-  <ul class="flex">
-    <li><router-link></router-link></li>
-  </ul>
+  <div class="flex bg-gray-500 text-white justify-between">
+    <ul class="flex gap-5 p-5">
+      <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
+      <li><router-link :to="{ name: 'Me' }">Me</router-link></li>
+    </ul>
+    <ul class="flex gap-5 bg-gray-700 p-5">
+      <li><router-link :to="{ name: 'Login' }">Login</router-link></li>
+      <li><router-link :to="{ name: 'Register' }">Register</router-link></li>
+    </ul>
+  </div>
 </template>
