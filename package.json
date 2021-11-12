@@ -1,5 +1,5 @@
 {
-  "name": "basic-spa-vite-template",
+  "name": "basic-spa-vue-vite-template",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

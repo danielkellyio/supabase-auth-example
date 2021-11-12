@@ -8,3 +8,10 @@
 * ESLint + Prettier (with VS Code Settings)
 * Boilerplate Auth User Composable
 * Boilerplate Auth Pages
+
+### How To Use
+
+```
+$ git clone git@github.com:danielkellyio/basic-spa-vue-vite-template.git
+$ npm install
+```
