@@ -12,6 +12,6 @@
 ### How To Use
 
 ```
-$ git clone git@github.com:danielkellyio/basic-spa-vue-vite-template.git
-$ npm install
+git clone git@github.com:danielkellyio/basic-spa-vue-vite-template.git
+npm install
 ```
