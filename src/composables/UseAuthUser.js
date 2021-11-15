@@ -57,9 +57,13 @@ export default function useAuthUser() {
   const register = async ({ email, password, ...meta }) => {
     const { user, error } = await supabase.auth.signUp(
       { email, password },
-      //arbitrary meta data is passed as the second argument under a data key
-      // to the Supabase signUp method
-      { data: meta }
+      {
+        //arbitrary meta data is passed as the second argument under a data key
+        // to the Supabase signUp method
+        data: meta,
+        // the to redirect to after the user confirms their email
+        redirectTo: `${window.location.origin}/me`,
+      }
     );
     if (error) throw error;
     return user;

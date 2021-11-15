@@ -1,13 +1,6 @@
 <script setup>
-import { useRouter } from "vue-router";
 import useAuthUser from "@/composables/UseAuthUser";
-
-// use necessary composables
-const router = useRouter();
-const { user, isLoggedIn } = useAuthUser();
-
-// redirect to login if not logged in
-if (!isLoggedIn()) router.replace({ name: "Login" });
+const { user } = useAuthUser();
 </script>
 
 <template>
