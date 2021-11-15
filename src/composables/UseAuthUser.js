@@ -1,72 +1,68 @@
 import { ref } from "vue";
+
+// user is set outside of the useAuthUser function
+// so that it will act as global state and always refer to a single user
 const user = ref(null);
-import useSupabase from "@/composables/UseSupabase";
+
 export default function useAuthUser() {
-  const { supabase } = useSupabase();
+  /**
+   * Login with email and password
+   */
+  const login = async ({ email, password }) => {};
 
-  const maybeHandleEmailConfirmation = async (route) => {
-    if (route.hash.startsWith("#access_token")) {
-      const { login } = useAuthUser();
-      const refreshToken = new URLSearchParams(route.hash.replace("#", "")).get(
-        "refresh_token"
-      );
-      await login({ refreshToken });
-      return { name: "Me" };
-    }
-  };
+  /**
+   * Login with refresh token
+   * Useful for logging in after email confirmations
+   */
+  const loginWithRefreshToken = async (token) => {};
 
-  const login = async ({ email, password, refreshToken, provider }) => {
-    const { user, error } = await supabase.auth.signIn({
-      email,
-      password,
-      refreshToken,
-      provider,
-    });
-    if (error) throw error;
-    return user;
-  };
-  const loginWithSocialProvider = async (provider) => {
-    console.log({ provider });
-    const { user, error } = await supabase.auth.signIn({ provider });
-    if (error) throw error;
-    return user;
-  };
-  const logout = async () => {
-    const { error } = supabase.auth.signOut();
-    if (error) throw error;
-  };
-  const isLoggedIn = () => {
-    return !!user.value;
-  };
-  const register = async ({ email, password, ...meta }) => {
-    const { user, error } = await supabase.auth.signUp(
-      { email, password },
-      { data: meta }
-    );
-    if (error) throw error;
-    return user;
-  };
-  const update = async (data) => {
-    const { user, error } = await supabase.auth.update(data);
-    if (error) throw error;
-    return user;
-  };
-  const sendPasswordRestEmail = async (email) => {
-    const { user, error } = await supabase.auth.api.resetPasswordForEmail(
-      email
-    );
-    if (error) throw error;
-    return user;
-  };
+  /**
+   * Login with google, github, etc
+   */
+  const loginWithSocialProvider = (provider) => {};
+
+  /**
+   * Logout
+   */
+  const logout = async () => {};
+
+  /**
+   * Check if the user is logged in or not
+   */
+  const isLoggedIn = () => {};
+
+  /**
+   * Register
+   */
+  const register = async ({ email, password, ...meta }) => {};
+
+  /**
+   * Update user email, password, or meta data
+   */
+  const update = async (data) => {};
+
+  /**
+   * Send user an email to reset their password
+   * (ie. support "Forgot Password?")
+   */
+  const sendPasswordRestEmail = async (email) => {};
+
+  /**
+   * Will be useful for informing the application what to do
+   * when Supabase redirects a user back to app
+   * after confirming email address
+   */
+  const maybeHandleEmailConfirmation = async (route) => {};
   return {
     user,
     login,
-    logout,
+    loginWithSocialProvider,
+    loginWithRefreshToken,
     isLoggedIn,
+    logout,
     register,
     update,
     sendPasswordRestEmail,
     maybeHandleEmailConfirmation,
-    loginWithSocialProvider,
   };
 }

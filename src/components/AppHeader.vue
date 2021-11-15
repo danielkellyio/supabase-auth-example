@@ -1,6 +1,6 @@
 <script setup>
 import useAuthUser from "@/composables/UseAuthUser";
-const { user } = useAuthUser();
+const { isLoggedIn } = useAuthUser();
 </script>
 <template>
   <div class="flex bg-gray-500 text-white justify-between">
@@ -8,7 +8,7 @@ const { user } = useAuthUser();
       <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
       <li><router-link :to="{ name: 'Me' }">Me</router-link></li>
     </ul>
-    <ul v-if="user" class="flex gap-5 bg-gray-700 p-5">
+    <ul v-if="isLoggedIn()" class="flex gap-5 bg-gray-700 p-5">
       <li><router-link :to="{ name: 'Logout' }">Logout</router-link></li>
     </ul>
     <ul v-else class="flex gap-5 bg-gray-700 p-5">

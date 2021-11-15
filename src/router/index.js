@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import useAuthUser from "@/composables/UseAuthUser";
 
 const routes = [
   {
@@ -31,8 +30,7 @@ const routes = [
     name: "Logout",
     path: "/logout",
     beforeEnter: () => {
-      const { logout } = useAuthUser();
-      logout();
+      // do logout here
       return { name: "Home" };
     },
   },
@@ -41,28 +39,9 @@ const routes = [
     path: "/register",
     component: () => import("@/pages/Register.vue"),
   },
-  {
-    name: "Message",
-    path: "/message",
-    props: (route) => {
-      const params = new URLSearchParams(route.hash.replace("#", ""));
-      return { message: params.get("message") };
-    },
-    component: () => import("@/pages/Message.vue"),
-  },
 ];
 
-const router = createRouter({
+export default createRouter({
   history: createWebHistory(),
   routes,
 });
-
-router.beforeEach(async (to) => {
-  if (to.hash.startsWith("#message") && to.name !== "Message") {
-    return { name: "Message", hash: to.hash };
-  }
-  const { maybeHandleEmailConfirmation } = useAuthUser();
-  return await maybeHandleEmailConfirmation(to);
-});
-
-export default router;
