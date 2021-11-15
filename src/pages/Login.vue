@@ -28,7 +28,7 @@ const handleLogin = async (provider) => {
 </script>
 <template>
   <div class="max-w-lg m-auto">
-    <form @submit.prevent="handleLogin">
+    <form @submit.prevent="handleLogin()">
       <h1 class="text-3xl mb-5">Login</h1>
       <label>Email <input v-model="form.email" type="email" /></label>
       <label>Password <input v-model="form.password" type="password" /></label>
