@@ -11,12 +11,6 @@ export default function useAuthUser() {
   const login = async ({ email, password }) => {};
 
   /**
-   * Login with refresh token
-   * Useful for logging in after email confirmations
-   */
-  const loginWithRefreshToken = async (token) => {};
-
-  /**
    * Login with google, github, etc
    */
   const loginWithSocialProvider = (provider) => {};
@@ -46,23 +40,14 @@ export default function useAuthUser() {
    * (ie. support "Forgot Password?")
    */
   const sendPasswordRestEmail = async (email) => {};
-
-  /**
-   * Will be useful for informing the application what to do
-   * when Supabase redirects a user back to app
-   * after confirming email address
-   */
-  const maybeHandleEmailConfirmation = async (route) => {};
   return {
     user,
     login,
     loginWithSocialProvider,
-    loginWithRefreshToken,
     isLoggedIn,
     logout,
     register,
     update,
     sendPasswordRestEmail,
-    maybeHandleEmailConfirmation,
   };
 }
