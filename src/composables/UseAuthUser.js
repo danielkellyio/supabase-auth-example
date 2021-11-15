@@ -62,7 +62,7 @@ export default function useAuthUser() {
         // to the Supabase signUp method
         data: meta,
         // the to redirect to after the user confirms their email
-        redirectTo: `${window.location.origin}/me`,
+        redirectTo: `${window.location.origin}/me?fromEmail=registrationConfirmation"`,
       }
     );
     if (error) throw error;
